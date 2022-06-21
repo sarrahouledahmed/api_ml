@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Predict result of your digital marketing campaign</title>
+ <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+ <div class="login">
+ <h3>Predict the result of Digital Marketing campaign</h3>
+     <p>{{prediction_text}}</p>
+
+     <form action="{{ url_for('predict')}}"method="POST">
+        <div>
+            <label for="sector">sector</label>
+            <select class="form-control" id="sector" name="sector">
+              <option {% if request.form['sector'] == 'Ecommerce & Retail' %}selected="selected"{% endif %}>Ecommerce & Retail</option>
+              <option {% if request.form['sector'] == 'B2B' %}selected="selected"{% endif %}>B2B</option>
+              <option {% if request.form['sector'] == 'Travel' %}selected="selected"{% endif %}>Travel</option>
+              <option {% if request.form['sector'] == 'Automotive' %}selected="selected"{% endif %}>Automotive</option>
+            </select>
+          </div>
+
+        <div>
+            <label for="objective">Objective</label>
+            <select class="form-control" id="objective" name="objective">
+              <option {% if request.form['objective'] == 'post engagement' %}selected="selected"{% endif %}>post engagement</option>
+              <option {% if request.form['objective'] == 'Traffic' %}selected="selected"{% endif %}>Traffic</option>
+               <option {% if request.form['objective'] == 'lead generation' %}selected="selected"{% endif %}>lead generation</option>
+               <option {% if request.form['objective'] == 'Messages' %}selected="selected"{% endif %}>Messages</option>
+                <option {% if request.form['objective'] == 'pages likes' %}selected="selected"{% endif %}>pages likes</option>
+
+            </select>
+           </div>
+
+         <div>
+        <input type="number" name="amount" placeholder="amount(USD)" step="0.1" required="required" /><br>
+          <label for="start_date">start_date</label>
+         <input type="date" id="start_date" name="start_date" placeholder="" required="required" /><br>
+            <label for="end_date">end-date</label>
+           <input type="date" id="end_date" name="end_date" placeholder="end_date"  required="required" /><br>
+
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+</body>
+
+</html>
+

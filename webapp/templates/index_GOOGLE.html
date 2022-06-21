@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Predict result of your digital marketing campaign</title>
+ <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+ <div class="login">
+ <h3>Predict the result of Digital Marketing campaign</h3>
+          <p>{{prediction_text}}</p>
+
+     <form action="{{ url_for('predict_Google')}}"method="POST">
+        <div>
+            <label for="Campaign type">Campaign type</label>
+            <select class="form-control" id="Campaign type" name="Campaign type">
+              <option {% if request.form['Campaign type'] == 'Display' %}selected="selected"{% endif %}>Display</option>
+              <option {% if request.form['Campaign type'] == 'Smart' %}selected="selected"{% endif %}>Smart</option>
+              <option {% if request.form['Campaign type'] == 'Search' %}selected="selected"{% endif %}>Search</option>
+              <option {% if request.form['Campaign type'] == 'Video' %}selected="selected"{% endif %}>Video</option>
+              <option {% if request.form['Campaign type'] == 'App' %}selected="selected"{% endif %}>App</option>
+           </select>
+          </div>
+
+
+         <div>
+        <input type="number" name="amount" placeholder="amount(USD)" step="0.1" required="required" /><br>
+          <label for="start_date">start_date</label>
+         <input type="date" id="start_date" name="start_date" placeholder="" required="required" /><br>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+</body>
+
+</html>
